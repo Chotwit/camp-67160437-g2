@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title> ส่วนหัว </title>
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap" rel="stylesheet">
-        <style>
-            body{
-                 font-family: "Noto Sans Thai", sans-serif;
-            }
-        </style>
-    </head>
-    <body>
-       <div class="container mt-4">
-            <h1>
-                Workshop #HTML - FORM</h1>
+@extends('template.default')
+
+@section('title', 'Workshop FORM')
+
+@section('content')
+<h1>Workshop #HTML - FORM</h1>
                 <form>
                     <div class="row mt-4">
                         <div class="col-sm-12 col-md-4">
@@ -23,15 +11,27 @@
                         </div>
                         <div class="col">
                             <input id="fname" class="form-control">
+                            <div class="valid-feedback">
+                                ถูกต้อง
+                            </div>
+                            <div class="invalid-feedback">
+                                โปรดระบุชื่อ
+                            </div>
                         </div>
                     </div>
-                    
+
                     <div class="row mt-4">
                         <div class="col-sm-12 col-md-4">
                             <label for="lname">นามสกุล</label>
                         </div>
                         <div class="col">
                             <input id="lname" class="form-control">
+                            <div class="valid-feedback">
+                                ถูกต้อง
+                            </div>
+                            <div class="invalid-feedback">
+                                โปรดระบุนามสกุล
+                            </div>
                         </div>
                     </div>
 
@@ -41,6 +41,12 @@
                         </div>
                         <div class="col">
                             <input type="date"  id="birthday"  class="form-control" placeholder="dd/mm/yyyy">
+                            <div class="valid-feedback">
+                                ถูกต้อง
+                            </div>
+                            <div class="invalid-feedback">
+                                โปรดระบุวันที่
+                            </div>
                         </div>
                     </div>
 
@@ -50,22 +56,29 @@
                         </div>
                         <div class="col">
                             <input id="age" class="form-control">
+                            <div class="valid-feedback">
+                                ถูกต้อง
+                            </div>
+                            <div class="invalid-feedback">
+                                โปรดระบุอายุ
+                            </div>
                         </div>
                     </div>
 
                     <div class="row mt-4">
                         <div class="col-sm-12 col-md-4">
-                            <label>เพศ</label> 
+                            <label>เพศ</label>
                         </div>
                         <div class="col">
                             <div class="form-check-inline">
                                 <input class="form-check-input" type="radio" name="gender" id="male">
                                 <label class="form-check-label" for="male">ชาย</label>
-                            </div>
-                            <div class="form-check-inline ms-3">
-                                <input class="form-check-input" type="radio" name="gender" id="female">
+
+                                <input class="form-check-input ms-4" type="radio" name="gender" id="female">
                                 <label class="form-check-label" for="female">หญิง</label>
+
                             </div>
+
                         </div>
                     </div>
 
@@ -102,7 +115,7 @@
 
                     <div class="row mt-4">
                         <div class="col-sm-12 col-md-4">
-                            <label>แนวเพลงที่ชอบ</label> 
+                            <label>แนวเพลงที่ชอบ</label>
                         </div>
                         <div class="col">
                             <div class="form-check-inline">
@@ -132,15 +145,65 @@
                     </div>
 
                     <div class="row mt-4">
-                        <div class="d-grid gap-2 d-md-block">
-                            <button type="button" class="btn btn-sm btn-light me-4">Reset</button>
-                            <button type="button" class="btn btn-sm btn-success">Success</button>
+                        <div class="col">
+                            <button class="btn btn btn-light" type="reset">Reset</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn btn-success" onclick="clickMe()" type="button">Success</button>
                         </div>
                     </div>
 
                 </form>
-       </div>
-    </body>
+@endsection
 
+@push('scripts')
+    <script>
+       let clickMe = function () {
+            let fname = document.getElementById('fname')
+            let lname = document.getElementById('lname')
+            let birthday = document.getElementById('birthday')
+            let age = document.getElementById('age')
 
-</html>
+            if(fname.value == ""){
+                fname.classList.remove('is-valid')
+                fname.classList.add('is-invalid')
+            }else{
+                fname.classList.remove('is-invalid')
+                fname.classList.add('is-valid')
+            }
+
+            if(lname.value == ""){
+                lname.classList.remove('is-valid')
+                lname.classList.add('is-invalid')
+            }else{
+                lname.classList.remove('is-invalid')
+                lname.classList.add('is-valid')
+            }
+
+            if(birthday.value == ""){
+                birthday.classList.remove('is-valid')
+                birthday.classList.add('is-invalid')
+            }else{
+                birthday.classList.remove('is-invalid')
+                birthday.classList.add('is-valid')
+            }
+
+            if(age.value == ""){
+                age.classList.remove('is-valid')
+                age.classList.add('is-invalid')
+            }else{
+                age.classList.remove('is-invalid')
+                age.classList.add('is-valid')
+            }
+
+       }
+
+       let myfunc = (callback)=>{
+            callback("in Callback")
+       }
+
+       callMe = (param)=> {
+            console.log(param)
+       }
+    </script>
+@endpush
