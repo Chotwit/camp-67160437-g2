@@ -4,7 +4,7 @@
 
 @section('content')
 <h1>Workshop #HTML - FORM</h1>
-                <form>
+                <form class="needs-validation" novalidate>
                     <div class="row mt-4">
                         <div class="col-sm-12 col-md-4">
                             <label for="fname">ชื่อ</label>
@@ -70,15 +70,23 @@
                             <label>เพศ</label>
                         </div>
                         <div class="col">
-                            <div class="form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="male">
-                                <label class="form-check-label" for="male">ชาย</label>
-
-                                <input class="form-check-input ms-4" type="radio" name="gender" id="female">
-                                <label class="form-check-label" for="female">หญิง</label>
-
+                            <div id="gender">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" required>
+                                    <label class="form-check-label" for="male">ชาย</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="female" required>
+                                    <label class="form-check-label" for="female">หญิง</label>
+                                </div>
                             </div>
 
+                            <div class="valid-feedback">
+                                ถูกต้อง
+                            </div>
+                            <div class="invalid-feedback">
+                                โปรดเลือกเพศ
+                            </div>
                         </div>
                     </div>
 
@@ -88,6 +96,12 @@
                         </div>
                         <div class="col">
                             <input class="form-control" type="file" id="image">
+                            <div class="valid-feedback">
+                                ถูกต้อง
+                            </div>
+                            <div class="invalid-feedback">
+                                โปรดใส่รูป
+                            </div>
                         </div>
                     </div>
                     <div class="row mt-4">
@@ -96,6 +110,12 @@
                         </div>
                         <div class="col">
                             <textarea id="address" class="form-control" rows="4"></textarea>
+                            <div class="valid-feedback">
+                                ถูกต้อง
+                            </div>
+                            <div class="invalid-feedback">
+                                โปรดระบุที่อยู่
+                            </div>
                         </div>
                     </div>
 
@@ -104,12 +124,18 @@
                             <label for="color">สีที่ชอบ</label>
                         </div>
                         <div class="col">
-                            <select class="form-select form-select-sm" aria-label="Small select example">
+                            <select id="color" class="form-select form-select-sm" aria-label="Small select example">
                                 <option selected>เลือก</option>
                                 <option value="1">สีแดง</option>
                                 <option value="2">สีฟ้า</option>
                                 <option value="3">สีเหลือง</option>
                             </select>
+                            <div class="valid-feedback">
+                                ถูกต้อง
+                            </div>
+                            <div class="invalid-feedback">
+                                โปรดเลือกสีที่ชอบ
+                            </div>
                         </div>
                     </div>
 
@@ -118,29 +144,45 @@
                             <label>แนวเพลงที่ชอบ</label>
                         </div>
                         <div class="col">
-                            <div class="form-check-inline">
-                                <input class="form-check-input" type="radio" name="music" id="music1">
-                                <label class="form-check-label" for="music1">j-pop</label>
+                            <div id="music">
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="music" id="music1">
+                                    <label class="form-check-label" for="music1">j-pop</label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="music" id="music2">
+                                    <label class="form-check-label" for="music2">k-pop</label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="music" id="more">
+                                    <label class="form-check-label" for="more">อื่นๆ</label>
+                                </div>
                             </div>
-                            <div class="form-check-inline ms-3">
-                                <input class="form-check-input" type="radio" name="music" id="music2">
-                                <label class="form-check-label" for="music2">k-pop</label>
+
+                            <div class="valid-feedback">
+                                ถูกต้อง
                             </div>
-                            <div class="form-check-inline ms-3">
-                                <input class="form-check-input" type="radio" name="music" id="more">
-                                <label class="form-check-label" for="more">อื่นๆ</label>
+                            <div class="invalid-feedback">
+                                โปรดเลือกแนวเพลง
                             </div>
                         </div>
                     </div>
 
                     <div class="row mt-4">
                         <div class="col-sm-12 col-md-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                <label class="form-check-label" for="checkDefault">
-                                ยินยอมให้เก็บข้อมูล
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="checkdata">
+                                <label class="form-check-label" for="checkdata">
+                                    ยินยอมให้เก็บข้อมูล
                                 </label>
+                                <div class="valid-feedback">
+                                    ถูกต้อง
+                                </div>
+                                <div class="invalid-feedback">
+                                    โปรดยินยอมให้เก็บข้อมูล
+                                </div>
                             </div>
+
                         </div>
                     </div>
 
@@ -163,6 +205,18 @@
             let lname = document.getElementById('lname')
             let birthday = document.getElementById('birthday')
             let age = document.getElementById('age')
+            let address = document.getElementById('address')
+            let gender = document.getElementById('gender')
+            let genderMale = document.getElementById('male')
+            let genderFemale = document.getElementById('female')
+            let color = document.getElementById('color')
+            let music = document.getElementById('music')
+            let jpop = document.getElementById('music1')
+            let kpop = document.getElementById('music2')
+            let more = document.getElementById('more')
+            let image = document.getElementById('image')
+            let data = document.getElementById('checkdata')
+
 
             if(fname.value == ""){
                 fname.classList.remove('is-valid')
@@ -196,6 +250,53 @@
                 age.classList.add('is-valid')
             }
 
+            if(address.value == ""){
+                address.classList.remove('is-valid')
+                address.classList.add('is-invalid')
+            }else{
+                address.classList.remove('is-invalid')
+                address.classList.add('is-valid')
+            }
+
+            if(!genderMale.checked && !genderFemale.checked) {
+                gender.classList.remove('is-valid')
+                gender.classList.add('is-invalid')
+            } else {
+                gender.classList.remove('is-invalid')
+                gender.classList.add('is-valid')
+            }
+
+            if(color.value == "เลือก") {
+                color.classList.remove('is-valid')
+                color.classList.add('is-invalid')
+            } else {
+                color.classList.remove('is-invalid')
+                color.classList.add('is-valid')
+            }
+
+            if(!jpop.checked && !kpop.checked && !more.checked) {
+                music.classList.remove('is-valid')
+                music.classList.add('is-invalid')
+            } else {
+                music.classList.remove('is-invalid')
+                music.classList.add('is-valid')
+            }
+
+            if (image.files.length === 0) {
+                image.classList.remove('is-valid')
+                image.classList.add('is-invalid')
+            } else {
+                image.classList.remove('is-invalid')
+                image.classList.add('is-valid')
+            }
+
+            if(!data.checked) {
+                data.classList.remove('is-valid')
+                data.classList.add('is-invalid')
+            } else {
+                data.classList.remove('is-invalid')
+                data.classList.add('is-valid')
+            }
        }
 
        let myfunc = (callback)=>{
